@@ -80,7 +80,6 @@ class ViewController: UIViewController {
                 for beer in beers {
                     self?.beersArray.append(beer)
                 }
-                sleep(2)
                 DispatchQueue.main.async {
                     self?.tableView.reloadData()
                 }
