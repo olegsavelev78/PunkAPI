@@ -64,28 +64,6 @@ class ViewController: UIViewController {
         activityIndicator.startAnimating()
         return downloadView
     }
-
-}
-
-//MARK: - UITableViewDataSource, UITableViewDelegate
-extension ViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return beersArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Beer") as? BeersTableViewCell else { return UITableViewCell() }
-        let beer = beersArray[indexPath.row]
-        cell.initCell(beer: beer)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailViewController()
-        detailVC.beer = beersArray[indexPath.row]
-        present(detailVC, animated: true, completion: nil)
-        
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let position = scrollView.contentOffset.y
@@ -109,6 +87,30 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource, UIScrollVi
             }
         }
     }
+
+}
+
+//MARK: - UITableViewDataSource, UITableViewDelegate
+extension ViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return beersArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Beer") as? BeersTableViewCell else { return UITableViewCell() }
+        let beer = beersArray[indexPath.row]
+        cell.initCell(beer: beer)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = DetailViewController()
+        detailVC.beer = beersArray[indexPath.row]
+        present(detailVC, animated: true, completion: nil)
+        
+    }
+    
+    
     
     
 }
